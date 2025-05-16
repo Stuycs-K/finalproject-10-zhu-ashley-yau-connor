@@ -3,16 +3,15 @@
  
 ### GROUP NAME HERE (CHANGE THIS!!!!!)
 
-Group Members Here (CHANGE THIS!!!!!)
+Ashley Zhu and Connor Yau
        
 ### Project Description:
 
-Explain what is this project. (CHANGE THIS!!!!!)
+Our program encrypts a message into an image file that may then be decrypted when viewed through a plane in Stegsolve. We aim to implement encryption across all 37 different planes. 
   
 ### Instructions:
 
-How does the user install/compile/run the program. (CHANGE THIS!!!!!)
-How does the user interact with this program? (CHANGE THIS!!!!!)
+The user should run the make run command and the user will be prompted with three questions/commands. The first input the user should give is the message they would like to encode. The second input they should give is the image file they would like to encode information to. Lastly, the third input is the plane the message is being encrypted for in Stegsolve. There are 37 possible planes: xor, alpha plane (numbered 0 through 7), red plane (numbered 0 through 7), green plane (numbered 0 through 7), blue plane (numbered 0 through 7), full alpha, full red, full green, full blue, random colour map (numbered 0 through 7), and gray bits. 
 
 ### Resources/ References:
 
