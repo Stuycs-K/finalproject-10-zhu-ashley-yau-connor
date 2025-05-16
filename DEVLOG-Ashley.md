@@ -9,5 +9,6 @@ This document must be updated daily every time you finish a work session.
 - completed project description and instructions in readme
 - intentions and usage completed in proposal
 
-### 2024-01-03 - Brief description
-Expanded description including how much time was spent on task.
+### 2024-01-03 - Research and Proposal
+- worked on researching more about the different planes of stegsolve 
+- worked on proposal breakdown and pacing
