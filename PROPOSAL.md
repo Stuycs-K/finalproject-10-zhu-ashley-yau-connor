@@ -2,15 +2,15 @@
 
 ## Group Members:
 
-names here.(CHANGE THIS!!!!!)
+Ashley Zhu and Connor Yau
        
 # Intentions:
 
-A statement of the problem you are solving and/or a high level description of the project. (CHANGE THIS!!!!!)
+Our program will encrypt a message into an image file that may then be decrypted when viewed through a plane in Stegsolve. We aim to implement encryption across all 37 different planes in Stegsolve. 
     
 # Intended usage:
 
-A description as to how the project will be used (describe the user interface). (CHANGE THIS!!!!!)
+The user should run our program and will then be prompted to give an inputs for the message they would like to encrypt, the name of the image file they would like to encrypt this message into, and the Stegsolve pane they would like the message to be visible in.  
   
 # Technical Details:
 
@@ -21,7 +21,11 @@ A description of your technical design. This should include:
 How you will be using the topics covered in class in the project.
      
 How you are breaking down the project and who is responsible for which parts.
-  
+
+Ashley
+- 
+Connor
+- 
     
 # Intended pacing:
 
