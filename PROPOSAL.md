@@ -14,8 +14,9 @@ The user should run our program and will then be prompted to give an inputs for 
   
 # Technical Details:
    
-How you will be using the topics covered in class in the project.
+Similar to the image encoder and decoder assingment we had, we will implement least significant bit steganography to encode our messages in planes of our stegsolve encoder. For the red, green, blue, and alpha planes, we plan to encrypt our message in a similar way but this time spelling our message out with the bytes. 
 
+The full and gray planes will use a similar idea but will edit a few bits to make the message more visible. 
 
 ## Breakdown: 
 
@@ -31,10 +32,10 @@ Connor
     
 # Intended pacing:
 
-5/13: Take in user input
-5/14: Convert message to array
-5/19: Encrypt for xor, gray bits, full planes
-5/19: Encrypt for red, green, blue, alpha planes
-5/21: Encrypt for random
-5/22: Complete Slides
-5/23: Complete Video
+5/20: Take in user input
+5/21: Convert message to array
+5/26: Encrypt for xor, gray bits, full planes
+5/26: Encrypt for red, green, blue, alpha planes
+5/28: Encrypt for random
+5/29: Complete Slides
+5/30: Complete Video

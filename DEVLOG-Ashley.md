@@ -12,3 +12,4 @@ This document must be updated daily every time you finish a work session.
 ### 2024-01-03 - Research and Proposal
 - worked on researching more about the different planes of stegsolve 
 - worked on proposal breakdown and pacing
+- worked on proposal technical details
