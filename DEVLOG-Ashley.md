@@ -16,3 +16,4 @@ This document must be updated daily every time you finish a work session.
 
 ### 2025-05-19 - Flags
 - worked on setup and user-inputted flags
+- completed parsing args flags
