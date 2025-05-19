@@ -10,13 +10,13 @@ Our program will encrypt a message into an image file that may then be decrypted
     
 # Intended usage:
 
-The user should run our program and will then be prompted to give an inputs for the message they would like to encrypt, the name of the image file they would like to encrypt this message into, and the Stegsolve pane they would like the message to be visible in.  
+The user should run our program and will then be prompted to give an inputs for the message they would like to encrypt, the name of the image file they would like to encrypt this message into, and the Stegsolve pane they would like the message to be visible in. 
   
 # Technical Details:
    
-Similar to the image encoder and decoder assingment we had, we will implement least significant bit steganography to encode our messages in planes of our stegsolve encoder. For the red, green, blue, and alpha planes, we plan to encrypt our message in a similar way but this time spelling our message out with the bytes. 
+We plan on expanding on the image encoder and decoder lab by implementing steganography to encode our messages into various planes supported by stegsolve. For the red, green, blue, and alpha planes, we plan to be able to encrypt our message into each bit. Two modes will allow for the same functionality as the lab, with greedy and selective style encryption. 
 
-The full and gray planes will use a similar idea but will edit a few bits to make the message more visible. 
+We plan to implement a third mode utlizing a more elaborate mask. This advanced mode allows messages or binary masks to visually appear when viewed through specific LSB planes using tools like stegsolve. This will allow us to encode greyscale images into various channels. The target channel(s) are modified such that the structure of the mask becomes visible when isolating individual bit planes.
 
 ## Breakdown: 
 
