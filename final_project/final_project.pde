@@ -8,8 +8,7 @@ final static int GRA = 5;
 final static int FUL = 6;
 final static int RAN = 7;
 
-int TYPE = RED;
-int PLANE = 0;
+int PLANENO = 0;
 int MODE = 0; 
 String PLAINTEXT = "This";
 String INPUTFILENAME="input.png";
@@ -29,24 +28,20 @@ void setup() {
     return;
   }
 
-  println("Attempting to load image.");
-  PImage img = loadImage(INPUTFILENAME);
-  println("Attempting to create part array.");
-  int parts[];
-  if(MODE==FILE){
-    //in file mode, the plaintext is a filename
-    parts = fileToArray(PLAINTEXT);
-  }else{
-    parts = messageToArray(PLAINTEXT);
-  }
-  println("Attempting to modify image.");
-  modifyImage(img, parts);
-  println("Attempting to save image.");
-  img.save(OUTPUTFILENAME);
-  if(!DISPLAYMODE.equalsIgnoreCase("FALSE")){
-    println("Displaying image.");
-    image(img,0,0);
-  }
+  //println("Attempting to load image.");
+  //PImage img = loadImage(INPUTFILENAME);
+  //println("Attempting to create part array.");
+  //int parts[];
+  //if(MODE==FILE){
+  //  //in file mode, the plaintext is a filename
+  //  parts = fileToArray(PLAINTEXT);
+  //}else{
+  //  parts = messageToArray(PLAINTEXT);
+  //}
+  //println("Attempting to modify image.");
+  //modifyImage(img, parts);
+  //println("Attempting to save image.");
+  //img.save(OUTPUTFILENAME);
 }
 
 boolean parseArgs(){
@@ -79,12 +74,23 @@ boolean parseArgs(){
       if(args[i].equals("-p")){
         if(args[i+1]!=null){
           String modeString=args[i+1];
-          String[] modes = {"red", "green", "blue", "full", "random", "gray", "xor"};
+          String[] modes = {"red", "green", "blue", "alpha", "xor", "gray", "full", "random"};
           for(int ind = 0; ind <modes.length; ind++){
             if(modeString.equalsIgnoreCase(modes[ind])){
               MODE=ind;
             }
           }
+        }else{
+          println("-p requires plane number as next argument");
+          return false;
+        }
+      }
+      if(args[i].equals("-n")){
+        if(args[i+1]!=null){
+          PLANENO=Integer.valueOf(args[i+1]);
+        }else{
+          println("-n requires plane number as next argument");
+          return false;
         }
       }
     }
