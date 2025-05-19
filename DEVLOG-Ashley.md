@@ -13,3 +13,6 @@ This document must be updated daily every time you finish a work session.
 - worked on researching more about the different planes of stegsolve 
 - worked on proposal breakdown and pacing
 - worked on proposal technical details
+
+### 2025-05-19 - Flags
+- worked on setup and user-inputted flags
