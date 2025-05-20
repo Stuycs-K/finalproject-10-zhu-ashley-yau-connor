@@ -21,15 +21,15 @@ void setup() {
   pg.background(255);
   pg.fill(0);
   pg.textFont(font);
-  pg.textSize(32);
-  pg.text(message, paddingX, paddingY + textAscent());
+  pg.textSize(48);
+  pg.text(message, paddingX, 2* paddingY + textAscent());
   pg.endDraw();
 
   pg.loadPixels();
 
   PrintWriter writer = createWriter("messageMask.txt");
   
-  for (int y = paddingY; y < paddingY + th; y+= maskSize) {
+  for (int y = 2 * paddingY; y < paddingY + th; y+= maskSize) {
     for (int x = paddingX; x < paddingX + tw; x+= maskSize) {
       if (x < 0 || y < 0 || x >= pg.width || y >= pg.height) continue;  // bounds check
       int i = x + y * pg.width;
