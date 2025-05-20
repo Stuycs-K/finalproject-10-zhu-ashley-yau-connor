@@ -10,7 +10,7 @@ final static int RAN = 7;
 
 int PLANENO = 0;
 int MODE = 0; 
-String PLAINTEXT = "This";
+String MASKFILENAME = "mask.txt";
 String INPUTFILENAME="input.png";
 String OUTPUTFILENAME="encoded.png";
 
@@ -19,7 +19,7 @@ void setup() {
 
   if(args==null){
     println("no arguments provided");
-    println("flags: -i INPUTFILENAME -o OUTPUTFILENAME -m MESSAGE -p PLANEMODE -n PLANENUMBER (for rgb, alpha, random)");
+    println("flags: -i INPUTFILENAME -o OUTPUTFILENAME -m MASKFILENAME -p PLANEMODE -n PLANENUMBER (for rgb, alpha, random)");
     return;
   }
 
@@ -51,15 +51,15 @@ boolean parseArgs(){
         try{
           INPUTFILENAME=args[i+1];
         }catch(Exception e){
-          println("-o requires filename as next argument");
+          println("-i requires filename as next argument");
           return false;
         }
       }
       if(args[i].equals("-m")){
         try{
-          PLAINTEXT=args[i+1];
+          MASKFILENAME=args[i+1];
         }catch(Exception e){
-          println("-p requires quoted plaintext as next argument");
+          println("-m requires filename as next argument");
           return false;
         }
       }
@@ -98,7 +98,10 @@ boolean parseArgs(){
   return true;
 }
 
-
+void XOR(){
+  Scanner readMask = new Scanner(MASKFILENAME);
+  
+}
 
 void modifyImage(PImage img, int[]messageArray) {
  
@@ -118,27 +121,7 @@ void modifyImage(PImage img, int[]messageArray) {
     }
 
   } else if (MODE == SELECTIVE || MODE == FILE) {
-    print(messageArray.length);
-    int count = 0;
-    for (int i = 0; i < img.pixels.length; i++) {
-      int red = (int) red(img.pixels[i]); // can try to optimize w/ >> 16 & 0xFF
-      int green = (int) green(img.pixels[i]);
-      
-      if (red % 4 == 0 && green % 4 == 0) {
-        if (count < messageArray.length) { 
-          int blue = (int) blue(img.pixels[i]);
-          blue &= 252;
-          blue += messageArray[count];
-        
-          img.pixels[i] = color(red, green, blue); 
-          count++;
-        }
-       else {
-         red |= 1;
-         img.pixels[i] = color(red, green, blue(img.pixels[i]));
-       }
-      }
-    }
+   
   }
   img.updatePixels();
 }
