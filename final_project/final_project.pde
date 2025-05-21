@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 final static int RED = 0;
 final static int GRE = 1;
 final static int BLU = 2;
@@ -98,9 +99,16 @@ boolean parseArgs(){
   return true;
 }
 
-void XOR(){
+void XOR(PImage img){
   Scanner readMask = new Scanner(MASKFILENAME);
-  
+  while(readMask.hasNextLine()){
+    String line = readMask.nextLine();
+    for(int ind = 0; ind <line.length(); ind ++){
+      if(line.charAt(ind)=='1'){
+        img.pixels[ind]=color(red(img.pixels[ind]&255), green(img.pixels[ind]&255), blue(img.pixels[ind]&255));
+      }
+    }
+  }
 }
 
 void modifyImage(PImage img, int[]messageArray) {
