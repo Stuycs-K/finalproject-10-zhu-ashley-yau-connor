@@ -21,3 +21,7 @@ This document must be updated daily every time you finish a work session.
 ### 2025-05-20 - XOR
 - began thinking about xor implementation and edited flags accordingly
 - xor method complete but needs adjustments for dimensions of image
+
+### 2025-05-21 - XOR Bugs
+- debugged xor to match image sizing 
+- out in class for AP

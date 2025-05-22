@@ -101,13 +101,17 @@ boolean parseArgs(){
 
 void XOR(PImage img){
   Scanner readMask = new Scanner(MASKFILENAME);
+  int linesread = 0;
   while(readMask.hasNextLine()){
     String line = readMask.nextLine();
     for(int ind = 0; ind <line.length(); ind ++){
-      if(line.charAt(ind)=='1'){
-        img.pixels[ind]=color(red(img.pixels[ind]&255), green(img.pixels[ind]&255), blue(img.pixels[ind]&255));
+      if(ind < img.width & linesread<img.height){
+        if(line.charAt(ind)=='1'){
+          img.pixels[ind]=color(red(img.pixels[ind]&255), green(img.pixels[ind]&255), blue(img.pixels[ind]&255));
+        }
       }
     }
+    linesread++;
   }
 }
 
