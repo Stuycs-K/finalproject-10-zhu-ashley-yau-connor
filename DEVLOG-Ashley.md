@@ -25,3 +25,7 @@ This document must be updated daily every time you finish a work session.
 ### 2025-05-21 - XOR Bugs
 - debugged xor to match image sizing 
 - out in class for AP
+
+### 2025-05-22 - Gray scale
+- researched about gray scale
+- attempted to test xor but incomplete
