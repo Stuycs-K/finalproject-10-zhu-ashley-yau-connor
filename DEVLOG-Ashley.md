@@ -29,3 +29,7 @@ This document must be updated daily every time you finish a work session.
 ### 2025-05-22 - Gray scale
 - researched about gray scale
 - attempted to test xor but incomplete
+
+### 2025-05-23 - XOR Testing
+- made main and test files to test xor method
+- 

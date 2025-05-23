@@ -11,7 +11,7 @@ final static int RAN = 7;
 
 int PLANENO = 0;
 int MODE = 4; 
-String MASKFILENAME = "mask.txt";
+String MASKFILENAME = "messageMask.txt";
 String INPUTFILENAME="cat.png";
 String OUTPUTFILENAME="output.png";
 
@@ -31,6 +31,7 @@ void setup() {
 
   println("Attempting to load image.");
   PImage img = loadImage(INPUTFILENAME);
+  println("xoring now");
   XOR(img);
   //println("Attempting to create part array.");
   //int parts[];
@@ -44,6 +45,7 @@ void setup() {
   //modifyImage(img, parts);
   //println("Attempting to save image.");
   img.save(OUTPUTFILENAME);
+  println("done and saved");
 }
 
 boolean parseArgs(){
@@ -105,9 +107,11 @@ void XOR(PImage img){
   int linesread = 0;
   while(readMask.hasNextLine()){
     String line = readMask.nextLine();
+    System.out.println(line);
     for(int ind = 0; ind <line.length(); ind ++){
       if(ind < img.width & linesread<img.height){
         if(line.charAt(ind)=='1'){
+          System.out.println("here");
           img.pixels[ind]=color(red(img.pixels[ind]&255), green(img.pixels[ind]&255), blue(img.pixels[ind]&255));
         }
       }
