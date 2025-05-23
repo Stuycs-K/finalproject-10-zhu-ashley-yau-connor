@@ -10,27 +10,28 @@ final static int FUL = 6;
 final static int RAN = 7;
 
 int PLANENO = 0;
-int MODE = 0; 
+int MODE = 4; 
 String MASKFILENAME = "mask.txt";
-String INPUTFILENAME="input.png";
-String OUTPUTFILENAME="encoded.png";
+String INPUTFILENAME="cat.png";
+String OUTPUTFILENAME="output.png";
 
 void setup() {
   //size(1200, 600);
 
-  if(args==null){
-    println("no arguments provided");
-    println("flags: -i INPUTFILENAME -o OUTPUTFILENAME -m MASKFILENAME -p PLANEMODE -n PLANENUMBER (for rgb, alpha, random)");
-    return;
-  }
+  //if(args==null){
+  //  println("no arguments provided");
+  //  println("flags: -i INPUTFILENAME -o OUTPUTFILENAME -m MASKFILENAME -p PLANEMODE -n PLANENUMBER (for rgb, alpha, random)");
+  //  return;
+  //}
 
-  if(!parseArgs()){
-    println("Parsing argument error;");
-    return;
-  }
+  //if(!parseArgs()){
+  //  println("Parsing argument error;");
+  //  return;
+  //}
 
-  //println("Attempting to load image.");
-  //PImage img = loadImage(INPUTFILENAME);
+  println("Attempting to load image.");
+  PImage img = loadImage(INPUTFILENAME);
+  XOR(img);
   //println("Attempting to create part array.");
   //int parts[];
   //if(MODE==FILE){
@@ -42,7 +43,7 @@ void setup() {
   //println("Attempting to modify image.");
   //modifyImage(img, parts);
   //println("Attempting to save image.");
-  //img.save(OUTPUTFILENAME);
+  img.save(OUTPUTFILENAME);
 }
 
 boolean parseArgs(){
@@ -117,7 +118,7 @@ void XOR(PImage img){
 
 void modifyImage(PImage img, int[]messageArray) {
  
-  if (MODE == GREEDY) {
+  if (MODE == 1) {
     for (int i = 0; i < messageArray.length; i++) {
       int red = (int) red(img.pixels[i]);
       red &= 252;
@@ -131,9 +132,6 @@ void modifyImage(PImage img, int[]messageArray) {
       
       img.pixels[i] = color(red, green(img.pixels[i]), blue(img.pixels[i]));
     }
-
-  } else if (MODE == SELECTIVE || MODE == FILE) {
-   
   }
   img.updatePixels();
 }
