@@ -27,10 +27,10 @@ void blackWhiteImage(PImage img) {
     int blue = (int) blue(img.pixels[i]);
     int green = (int) green(img.pixels[i]);
     if ((red + blue + green) / 3 > 128) {
-      img.pixels[i] = color(255);
+      img.pixels[i] = color(255,255,255);
     }
-    if ((red + blue + green) / 3 > 128) {
-      img.pixels[i] = color(0);
+    else {
+      img.pixels[i] = color(0,0,0);
     }
   }
   
