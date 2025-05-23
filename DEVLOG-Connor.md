@@ -18,3 +18,6 @@ Worked on the proposal, adding more to the technical details.
 working on implementation of visual steganography, with messages or images visible to the human eye when viewed in the right plane. Found a font I want to use: https://www.dafont.com/daydream-3.charmap?back=bitmap. Created processing file. Made my own branch.
 
 At home, I worked more on how to implement the message mask idea.
+
+## 2025-05-20
+In class time I merged branches.
