@@ -3,6 +3,7 @@ String OUTPUTFILENAME="output.png";
 int threshold = 128;
 PImage img;
 PImage base;
+int increment = 1;
 //the parseArgs function will set these to non-defaults
 
 void setup() {
@@ -45,19 +46,31 @@ void keyPressed() {
   //print("abc");
   if (key == CODED) {
     if (keyCode == RIGHT) {
-    threshold--;
-  }
-  else if (keyCode == LEFT) {
-    threshold++;
-  
+    threshold-=increment;
+    }
+    if (keyCode == LEFT) {
+      threshold+=increment;
+    }
+    if (keyCode == SHIFT) {
+      increment = 5;
+      //print("asd");
     }
   }
+  if (threshold < 0) threshold = -1;
+  if (threshold > 255) threshold = 256;
   
   print(threshold);
   //print(MODE);
   blackWhiteImage(img);
 }
 
+void keyReleased() {
+  if (key == CODED) {
+    if (keyCode == SHIFT) {
+      increment = 1;
+    }
+  }
+}
 void draw() {
   return;
 }
