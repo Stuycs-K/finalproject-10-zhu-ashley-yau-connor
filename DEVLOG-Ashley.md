@@ -32,4 +32,6 @@ This document must be updated daily every time you finish a work session.
 
 ### 2025-05-23 - XOR Testing
 - made main and test files to test xor method
-- 
+
+### 2025-05-26 - XOR Debugging
+- adjusted xor method for file handling and exceptions

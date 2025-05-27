@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
+import java.io.File;
 final static int RED = 0;
 final static int GRE = 1;
 final static int BLU = 2;
@@ -103,20 +104,26 @@ boolean parseArgs(){
 }
 
 void XOR(PImage img){
-  Scanner readMask = new Scanner(MASKFILENAME);
-  int linesread = 0;
-  while(readMask.hasNextLine()){
-    String line = readMask.nextLine();
-    System.out.println(line);
-    for(int ind = 0; ind <line.length(); ind ++){
-      if(ind < img.width & linesread<img.height){
-        if(line.charAt(ind)=='1'){
-          System.out.println("here");
-          img.pixels[ind]=color(red(img.pixels[ind]&255), green(img.pixels[ind]&255), blue(img.pixels[ind]&255));
+  File maskFile = new File(MASKFILENAME);
+  try{
+    Scanner readMask = new Scanner(maskFile);
+    int linesread = 0;
+    System.out.println("here!");
+    while(readMask.hasNextLine()){
+      String line = readMask.nextLine();
+      System.out.println(line);
+      for(int ind = 0; ind <line.length(); ind ++){
+        if(ind < img.width & linesread<img.height){
+          if(line.charAt(ind)=='1'){
+            System.out.println("here");
+            img.pixels[ind]=color(red(img.pixels[ind]&255), green(img.pixels[ind]&255), blue(img.pixels[ind]&255));
+          }
         }
       }
+      linesread++;
     }
-    linesread++;
+  }catch(Exception e){
+  e.printStackTrace();
   }
 }
 
