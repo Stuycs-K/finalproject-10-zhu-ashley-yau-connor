@@ -1,32 +1,35 @@
 String INPUTFILENAME="cat.png";
-String OUTPUTFILENAME="encoded.png";
+String OUTPUTFILENAME="output.png";
+int threshold = 128;
+PImage img;
+PImage base;
 //the parseArgs function will set these to non-defaults
-
-void draw(){
-  print("abc");
-}
 
 void setup() {
   size(1200, 600);
 
   println("Attempting to load image.");
-  PImage img = loadImage(INPUTFILENAME);
+  img = loadImage(INPUTFILENAME);
+  base = loadImage(INPUTFILENAME);
   blackWhiteImage(img);
-  
-  //save the modified image to disk.
-  println("Attempting to save image.");
-  img.save(OUTPUTFILENAME);
+
   println("Displaying image.");
   image(img,0,0);
   
 }
 
+void stop() {
+    
+  //save the modified image to disk.
+  println("Attempting to save image.");
+  img.save(OUTPUTFILENAME);
+}
 void blackWhiteImage(PImage img) {
   for (int i = 0 ; i < img.pixels.length ; i++) {
-    int red = (int) red(img.pixels[i]);
-    int blue = (int) blue(img.pixels[i]);
-    int green = (int) green(img.pixels[i]);
-    if ((red + blue + green) / 3 > 128) {
+    int red = (int) red(base.pixels[i]);
+    int blue = (int) blue(base.pixels[i]);
+    int green = (int) green(base.pixels[i]);
+    if ((red + blue + green) / 3 > threshold) {
       img.pixels[i] = color(255,255,255);
     }
     else {
@@ -35,4 +38,26 @@ void blackWhiteImage(PImage img) {
   }
   
   img.updatePixels();
+  image(img,0,0);
+}
+
+void keyPressed() {
+  //print("abc");
+  if (key == CODED) {
+    if (keyCode == RIGHT) {
+    threshold--;
+  }
+  else if (keyCode == LEFT) {
+    threshold++;
+  
+    }
+  }
+  
+  print(threshold);
+  //print(MODE);
+  blackWhiteImage(img);
+}
+
+void draw() {
+  return;
 }

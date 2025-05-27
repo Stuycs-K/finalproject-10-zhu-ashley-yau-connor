@@ -21,3 +21,6 @@ At home, I worked more on how to implement the message mask idea.
 
 ## 2025-05-20
 In class time I merged branches.
+
+## 2025-05-27
+Finishing up image work. Made it so you can manually adjust the threshold for black and white pixels. Fine tuning as well. Now just need to convert black and white image to a message mask.
