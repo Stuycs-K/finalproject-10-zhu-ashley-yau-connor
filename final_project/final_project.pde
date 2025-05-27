@@ -123,7 +123,7 @@ void XOR(PImage img){
       linesread++;
     }
   }catch(Exception e){
-  e.printStackTrace();
+    e.printStackTrace();
   }
 }
 
