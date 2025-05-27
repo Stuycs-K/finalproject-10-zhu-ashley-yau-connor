@@ -108,15 +108,17 @@ void XOR(PImage img){
   try{
     Scanner readMask = new Scanner(maskFile);
     int linesread = 0;
-    System.out.println("here!");
+    String line;
     while(readMask.hasNextLine()){
-      String line = readMask.nextLine();
-      System.out.println(line);
+      line = readMask.nextLine();
+      //System.out.println("my line: "+line);
       for(int ind = 0; ind <line.length(); ind ++){
         if(ind < img.width & linesread<img.height){
           if(line.charAt(ind)=='1'){
-            System.out.println("here");
-            img.pixels[ind]=color(red(img.pixels[ind]&255), green(img.pixels[ind]&255), blue(img.pixels[ind]&255));
+            //System.out.println("here");
+            img.pixels[ind+linesread*img.width]=color(red(img.pixels[ind+linesread*img.width]+16), 
+                                                    green(img.pixels[ind+linesread*img.width]+16), 
+                                                    blue(img.pixels[ind+linesread*img.width]+16));
           }
         }
       }

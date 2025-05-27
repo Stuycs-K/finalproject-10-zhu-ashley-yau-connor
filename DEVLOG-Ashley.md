@@ -35,3 +35,8 @@ This document must be updated daily every time you finish a work session.
 
 ### 2025-05-26 - XOR Debugging
 - adjusted xor method for file handling and exceptions
+
+### 2025-05-27 - XOR Debugging
+- managed missing messageMask.txt file
+- debugged xor method so editing multiple rows
+- edited mean of editing pixels so message less visible without xor
