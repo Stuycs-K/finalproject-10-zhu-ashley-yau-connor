@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
+
 final static int RED = 0;
 final static int GRE = 1;
 final static int BLU = 2;
@@ -17,6 +18,7 @@ String MASKFILENAME = "messageMask.txt";
 String INPUTFILENAME="cat.png";
 String OUTPUTFILENAME="output.png";
 ArrayList<String> textmaskarr= new ArrayList<String>();
+
 
 void setup() {
   //size(1200, 600);
@@ -36,6 +38,7 @@ void setup() {
   PImage img = loadImage(INPUTFILENAME);
   println("xoring now");
   XOR(img);
+
   //println("Attempting to create part array.");
   //int parts[];
   //if(MODE==FILE){
@@ -47,8 +50,10 @@ void setup() {
   //println("Attempting to modify image.");
   //modifyImage(img, parts);
   //println("Attempting to save image.");
+
   img.save(OUTPUTFILENAME);
   println("done and saved");
+
 }
 
 boolean parseArgs(){
@@ -140,9 +145,12 @@ void XOR(PImage img, ArrayList<String> arr){
   }
 }
 
+
+
 void modifyImage(PImage img, int[]messageArray) {
  
-  if (MODE == 1) {
+  if (MODE == 0) {
+
     for (int i = 0; i < messageArray.length; i++) {
       int red = (int) red(img.pixels[i]);
       red &= 252;
@@ -155,6 +163,29 @@ void modifyImage(PImage img, int[]messageArray) {
       red |= 3;
       
       img.pixels[i] = color(red, green(img.pixels[i]), blue(img.pixels[i]));
+    }
+
+  } else if (MODE == 1 || MODE == 2) {
+    print(messageArray.length);
+    int count = 0;
+    for (int i = 0; i < img.pixels.length; i++) {
+      int red = (int) red(img.pixels[i]); // can try to optimize w/ >> 16 & 0xFF
+      int green = (int) green(img.pixels[i]);
+      
+      if (red % 4 == 0 && green % 4 == 0) {
+        if (count < messageArray.length) { 
+          int blue = (int) blue(img.pixels[i]);
+          blue &= 252;
+          blue += messageArray[count];
+        
+          img.pixels[i] = color(red, green, blue); 
+          count++;
+        }
+       else {
+         red |= 1;
+         img.pixels[i] = color(red, green, blue(img.pixels[i]));
+       }
+      }
     }
   }
   img.updatePixels();
