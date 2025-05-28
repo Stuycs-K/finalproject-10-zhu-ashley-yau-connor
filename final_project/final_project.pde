@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.io.File;
 final static int RED = 0;
 final static int GRE = 1;
@@ -15,6 +16,7 @@ int MODE = 4;
 String MASKFILENAME = "messageMask.txt";
 String INPUTFILENAME="cat.png";
 String OUTPUTFILENAME="output.png";
+ArrayList<String> textmaskarr= new ArrayList<String>();
 
 void setup() {
   //size(1200, 600);
@@ -102,27 +104,36 @@ boolean parseArgs(){
   }
   return true;
 }
-
-void XOR(PImage img){
+ArrayList<String> ReadMask(){
+  File maskFile = new File(MASKFILENAME);
+  try{
+  Scanner readMask = new Scanner(maskFile);
+    while(readMask.hasNextLine()){
+      textmaskarr.add(readMask.nextLine());
+    }
+  readMask.close();
+  }catch(Exception e){
+    e.printStackTrace();
+  }
+    return textmaskarr;
+}
+void XOR(PImage img, ArrayList<String> arr){
   File maskFile = new File(MASKFILENAME);
   try{
     Scanner readMask = new Scanner(maskFile);
     int linesread = 0;
     String line;
-    while(readMask.hasNextLine()){
+    for(int i = 0; i<arr.size(); i++){
       line = readMask.nextLine();
-      //System.out.println("my line: "+line);
       for(int ind = 0; ind <line.length(); ind ++){
         if(ind < img.width & linesread<img.height){
           if(line.charAt(ind)=='1'){
-            //System.out.println("here");
             img.pixels[ind+linesread*img.width]=color(red(img.pixels[ind+linesread*img.width]+16), 
                                                     green(img.pixels[ind+linesread*img.width]+16), 
                                                     blue(img.pixels[ind+linesread*img.width]+16));
           }
         }
       }
-      linesread++;
     }
   }catch(Exception e){
     e.printStackTrace();
