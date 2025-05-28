@@ -1,4 +1,4 @@
-String INPUTFILENAME="cat.png";
+ String INPUTFILENAME="cat.png";
 String OUTPUTFILENAME="output.png";
 int threshold = 128;
 PImage img;
@@ -19,11 +19,25 @@ void setup() {
   
 }
 
-void stop() {
+void save() {
     
   //save the modified image to disk.
   println("Attempting to save image.");
   img.save(OUTPUTFILENAME);
+  
+  PrintWriter writer = createWriter("messageMask.txt");
+  for (int i = 0; i < img.height; i++) {
+    for (int j = 0; j < img.width; j++) {
+      int px = j + i * img.width;
+      color c = img.pixels[px];
+      
+      writer.print(c == color(0,0,0) ? '0' : '1');
+    }
+    writer.println();
+  }
+  
+  writer.flush();
+  writer.close();
 }
 void blackWhiteImage(PImage img) {
   for (int i = 0 ; i < img.pixels.length ; i++) {
@@ -55,11 +69,16 @@ void keyPressed() {
       increment = 5;
       //print("asd");
     }
+
   }
+  if (key == 's') {
+    save();
+  }
+  
   if (threshold < 0) threshold = -1;
   if (threshold > 255) threshold = 256;
   
-  print(threshold);
+  print(key);
   //print(MODE);
   blackWhiteImage(img);
 }
