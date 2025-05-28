@@ -41,3 +41,8 @@ This document must be updated daily every time you finish a work session.
 - debugged xor method so editing multiple rows
 - edited mean of editing pixels so message less visible without xor
 - research: file:///C:/Users/ashle/Downloads/JISEM_20_Poreddy+Lakshmi+vardhan_2_1424.pdf
+
+### 2025-05-28 - XOR Research, Adjust for rgb methods
+- edited xor method to make read message mask text file
+- tested more xor cases
+- https://www.mdpi.com/2076-3417/12/19/10096

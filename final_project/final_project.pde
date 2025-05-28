@@ -15,7 +15,7 @@ final static int RAN = 7;
 int PLANENO = 0;
 int MODE = 4; 
 String MASKFILENAME = "messageMask.txt";
-String INPUTFILENAME="cat.png";
+String INPUTFILENAME="test.jpg";
 String OUTPUTFILENAME="output.png";
 ArrayList<String> textmaskarr= new ArrayList<String>();
 
@@ -37,6 +37,7 @@ void setup() {
   println("Attempting to load image.");
   PImage img = loadImage(INPUTFILENAME);
   println("xoring now");
+  ReadMask();
   XOR(img);
 
   //println("Attempting to create part array.");
@@ -122,20 +123,17 @@ ArrayList<String> ReadMask(){
   }
     return textmaskarr;
 }
-void XOR(PImage img, ArrayList<String> arr){
-  File maskFile = new File(MASKFILENAME);
+void XOR(PImage img){
   try{
-    Scanner readMask = new Scanner(maskFile);
-    int linesread = 0;
     String line;
-    for(int i = 0; i<arr.size(); i++){
-      line = readMask.nextLine();
+    for(int i = 0; i<textmaskarr.size(); i++){
+      line = textmaskarr.get(i);
       for(int ind = 0; ind <line.length(); ind ++){
-        if(ind < img.width & linesread<img.height){
+        if(ind < img.width & i<img.height){
           if(line.charAt(ind)=='1'){
-            img.pixels[ind+linesread*img.width]=color(red(img.pixels[ind+linesread*img.width]+16), 
-                                                    green(img.pixels[ind+linesread*img.width]+16), 
-                                                    blue(img.pixels[ind+linesread*img.width]+16));
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]+16), 
+                                                    green(img.pixels[ind+i*img.width]+16), 
+                                                    blue(img.pixels[ind+i*img.width]+16));
           }
         }
       }
