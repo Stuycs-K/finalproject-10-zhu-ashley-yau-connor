@@ -40,3 +40,4 @@ This document must be updated daily every time you finish a work session.
 - managed missing messageMask.txt file
 - debugged xor method so editing multiple rows
 - edited mean of editing pixels so message less visible without xor
+- research: file:///C:/Users/ashle/Downloads/JISEM_20_Poreddy+Lakshmi+vardhan_2_1424.pdf
