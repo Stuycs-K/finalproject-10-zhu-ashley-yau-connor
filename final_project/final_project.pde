@@ -1,8 +1,8 @@
 import java.util.Arrays;
-final static int GREEDY = 0;
-final static int SELECTIVE = 1;
-final static int FILE = 2;
-final static int VISUAL = 3;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.io.File;
+
 final static int RED = 0;
 final static int GRE = 1;
 final static int BLU = 2;
@@ -13,28 +13,33 @@ final static int FUL = 6;
 final static int RAN = 7;
 
 int PLANENO = 0;
-int MODE = GREEDY;
-int TYPE = RED;
-String PLAINTEXT = "This";
-String INPUTFILENAME="input.png";
-String OUTPUTFILENAME="encoded.png";
+int MODE = 4; 
+String MASKFILENAME = "messageMask.txt";
+String INPUTFILENAME="test.jpg";
+String OUTPUTFILENAME="output.png";
+ArrayList<String> textmaskarr= new ArrayList<String>();
+
 
 void setup() {
   //size(1200, 600);
 
-  if(args==null){
-    println("no arguments provided");
-    println("flags: -i INPUTFILENAME -o OUTPUTFILENAME -m MESSAGE -p PLANEMODE -n PLANENUMBER (for rgb, alpha, random)");
-    return;
-  }
+  //if(args==null){
+  //  println("no arguments provided");
+  //  println("flags: -i INPUTFILENAME -o OUTPUTFILENAME -m MASKFILENAME -p PLANEMODE -n PLANENUMBER (for rgb, alpha, random)");
+  //  return;
+  //}
 
-  if(!parseArgs()){
-    println("Parsing argument error;");
-    return;
-  }
+  //if(!parseArgs()){
+  //  println("Parsing argument error;");
+  //  return;
+  //}
 
-  //println("Attempting to load image.");
-  //PImage img = loadImage(INPUTFILENAME);
+  println("Attempting to load image.");
+  PImage img = loadImage(INPUTFILENAME);
+  println("xoring now");
+  ReadMask();
+  XOR(img);
+
   //println("Attempting to create part array.");
   //int parts[];
   //if(MODE==FILE){
@@ -46,7 +51,10 @@ void setup() {
   //println("Attempting to modify image.");
   //modifyImage(img, parts);
   //println("Attempting to save image.");
-  //img.save(OUTPUTFILENAME);
+
+  img.save(OUTPUTFILENAME);
+  println("done and saved");
+
 }
 
 boolean parseArgs(){
@@ -56,15 +64,15 @@ boolean parseArgs(){
         try{
           INPUTFILENAME=args[i+1];
         }catch(Exception e){
-          println("-o requires filename as next argument");
+          println("-i requires filename as next argument");
           return false;
         }
       }
       if(args[i].equals("-m")){
         try{
-          PLAINTEXT=args[i+1];
+          MASKFILENAME=args[i+1];
         }catch(Exception e){
-          println("-p requires quoted plaintext as next argument");
+          println("-m requires filename as next argument");
           return false;
         }
       }
@@ -78,11 +86,11 @@ boolean parseArgs(){
       }
       if(args[i].equals("-p")){
         if(args[i+1]!=null){
-          String typeString=args[i+1];
-          String[] types = {"red", "green", "blue", "alpha", "xor", "gray", "full", "random"};
-          for(int ind = 0; ind < types.length; ind++){
-            if(typeString.equalsIgnoreCase(types[ind])){
-              TYPE=ind;
+          String modeString=args[i+1];
+          String[] modes = {"red", "green", "blue", "alpha", "xor", "gray", "full", "random"};
+          for(int ind = 0; ind <modes.length; ind++){
+            if(modeString.equalsIgnoreCase(modes[ind])){
+              MODE=ind;
             }
           }
         }else{
@@ -102,12 +110,72 @@ boolean parseArgs(){
   }
   return true;
 }
+ArrayList<String> ReadMask(){
+  File maskFile = new File(MASKFILENAME);
+  try{
+  Scanner readMask = new Scanner(maskFile);
+    while(readMask.hasNextLine()){
+      textmaskarr.add(readMask.nextLine());
+    }
+  readMask.close();
+  }catch(Exception e){
+    e.printStackTrace();
+  }
+    return textmaskarr;
+}
+void XOR(PImage img){
+  String line;
+  for(int i = 0; i<textmaskarr.size(); i++){
+    line = textmaskarr.get(i);
+    for(int ind = 0; ind <line.length(); ind ++){
+      if(ind < img.width & i<img.height){
+        if(line.charAt(ind)=='1'){
+          img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]+16), 
+                                            green(img.pixels[ind+i*img.width]+16), 
+                                            blue(img.pixels[ind+i*img.width]+16));
+        }
+      }
+    }
+  }
+}
 
-
+void RGB(int col, PImage img){ // col 0, 1, 2 for R, G, B
+  String line;
+  for(int i = 0; i<textmaskarr.size(); i++){
+    line = textmaskarr.get(i);
+    for(int ind = 0; ind <line.length(); ind ++){
+      if(ind < img.width & i<img.height){
+        if(line.charAt(ind)=='1'){
+          if(col == 0){
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]|1), green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]));
+          }  
+          else if (col ==1){
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]|1), blue(img.pixels[ind+i*img.width]));
+          }
+          else{
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]|1));
+          }
+        }
+        else{
+          if(col == 0){
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]&254), green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]));
+          }  
+          else if (col ==1){
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]&254), blue(img.pixels[ind+i*img.width]));
+          }
+          else{
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]&254));
+          }
+        }
+      }
+    }
+  }
+}
 
 void modifyImage(PImage img, int[]messageArray) {
  
-  if (MODE == GREEDY) {
+  if (MODE == 0) {
+
     for (int i = 0; i < messageArray.length; i++) {
       int red = (int) red(img.pixels[i]);
       red &= 252;
@@ -122,7 +190,7 @@ void modifyImage(PImage img, int[]messageArray) {
       img.pixels[i] = color(red, green(img.pixels[i]), blue(img.pixels[i]));
     }
 
-  } else if (MODE == SELECTIVE || MODE == FILE) {
+  } else if (MODE == 1 || MODE == 2) {
     print(messageArray.length);
     int count = 0;
     for (int i = 0; i < img.pixels.length; i++) {
