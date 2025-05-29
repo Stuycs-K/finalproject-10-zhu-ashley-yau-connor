@@ -46,3 +46,6 @@ This document must be updated daily every time you finish a work session.
 - edited xor method to make read message mask text file
 - tested more xor cases
 - https://www.mdpi.com/2076-3417/12/19/10096
+
+### 2025-05-29 - RGB Method
+- completed coding rgb method to edit least bits for red, green, and blue colors

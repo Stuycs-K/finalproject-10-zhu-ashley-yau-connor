@@ -124,26 +124,53 @@ ArrayList<String> ReadMask(){
     return textmaskarr;
 }
 void XOR(PImage img){
-  try{
-    String line;
-    for(int i = 0; i<textmaskarr.size(); i++){
-      line = textmaskarr.get(i);
-      for(int ind = 0; ind <line.length(); ind ++){
-        if(ind < img.width & i<img.height){
-          if(line.charAt(ind)=='1'){
-            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]+16), 
-                                                    green(img.pixels[ind+i*img.width]+16), 
-                                                    blue(img.pixels[ind+i*img.width]+16));
+  String line;
+  for(int i = 0; i<textmaskarr.size(); i++){
+    line = textmaskarr.get(i);
+    for(int ind = 0; ind <line.length(); ind ++){
+      if(ind < img.width & i<img.height){
+        if(line.charAt(ind)=='1'){
+          img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]+16), 
+                                            green(img.pixels[ind+i*img.width]+16), 
+                                            blue(img.pixels[ind+i*img.width]+16));
+        }
+      }
+    }
+  }
+}
+
+void RGB(int col, PImage img){ // col 0, 1, 2 for R, G, B
+  String line;
+  for(int i = 0; i<textmaskarr.size(); i++){
+    line = textmaskarr.get(i);
+    for(int ind = 0; ind <line.length(); ind ++){
+      if(ind < img.width & i<img.height){
+        if(line.charAt(ind)=='1'){
+          if(col == 0){
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]|1), green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]));
+          }  
+          else if (col ==1){
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]|1), blue(img.pixels[ind+i*img.width]));
+          }
+          else{
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]|1));
+          }
+        }
+        else{
+          if(col == 0){
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]&254), green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]));
+          }  
+          else if (col ==1){
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]&254), blue(img.pixels[ind+i*img.width]));
+          }
+          else{
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]&254));
           }
         }
       }
     }
-  }catch(Exception e){
-    e.printStackTrace();
   }
 }
-
-
 
 void modifyImage(PImage img, int[]messageArray) {
  
