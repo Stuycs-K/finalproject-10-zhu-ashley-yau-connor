@@ -26,4 +26,7 @@ In class time I merged branches.
 Finishing up image work. Made it so you can manually adjust the threshold for black and white pixels. Fine tuning as well. Now just need to convert black and white image to a message mask.
 
 ## 2025-05-28
-Finished image work functionality. Black and white images can be adjusted for brightness and can be saved to a text file to be encoded. 
+Finished image work functionality. Black and white images can be adjusted for brightness and can be saved to a text file to be encoded.
+
+## 2025-05-29
+Taught Ashley how to code. Fixed a bug that was easily spot-able with proper programming etiquette. Unfortunately, she does not practice propr programming etiquette.
