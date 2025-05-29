@@ -13,9 +13,10 @@ final static int FUL = 6;
 final static int RAN = 7;
 
 int PLANENO = 0;
-int MODE = 4; 
+int MODE = RED;
+
 String MASKFILENAME = "messageMask.txt";
-String INPUTFILENAME="test.jpg";
+String INPUTFILENAME="cat.png";
 String OUTPUTFILENAME="output.png";
 ArrayList<String> textmaskarr= new ArrayList<String>();
 
@@ -38,7 +39,7 @@ void setup() {
   PImage img = loadImage(INPUTFILENAME);
   println("xoring now");
   ReadMask();
-  XOR(img);
+  RGB(MODE,img);
 
   //println("Attempting to create part array.");
   //int parts[];
@@ -141,30 +142,43 @@ void XOR(PImage img){
 
 void RGB(int col, PImage img){ // col 0, 1, 2 for R, G, B
   String line;
+  int mask = 256 - (int) pow(2, PLANENO);
   for(int i = 0; i<textmaskarr.size(); i++){
     line = textmaskarr.get(i);
     for(int ind = 0; ind <line.length(); ind ++){
       if(ind < img.width & i<img.height){
-        if(line.charAt(ind)=='1'){
+        if(line.charAt(ind)=='1'){ // make last 0
           if(col == 0){
-            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]|1), green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]));
+            int red = (int) red(img.pixels[ind+i*img.width]);
+            red = red&mask+1;
+            img.pixels[ind+i*img.width]=color(red, green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]));
           }  
-          else if (col ==1){
-            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]|1), blue(img.pixels[ind+i*img.width]));
+          else if (col == 1){
+            int green = (int) green(img.pixels[ind+i*img.width]);
+            green = green&mask+1;          
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green, blue(img.pixels[ind+i*img.width]));
           }
-          else{
-            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]|1));
+          else if (col == 2){
+            int blue = (int) blue(img.pixels[ind+i*img.width]);
+            blue = blue&mask+1;    
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]), blue);
           }
         }
-        else{
+        else{ // make last 1
           if(col == 0){
-            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]&254), green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]));
+            int red = (int) red(img.pixels[ind+i*img.width]);
+            red &= mask; 
+            img.pixels[ind+i*img.width]=color(red, green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]));
           }  
           else if (col ==1){
-            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]&254), blue(img.pixels[ind+i*img.width]));
+            int green = (int) green(img.pixels[ind+i*img.width]);
+            green = green&mask;      
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green, blue(img.pixels[ind+i*img.width]));
           }
-          else{
-            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]&254));
+          else if (col ==2){
+            int blue = (int) blue(img.pixels[ind+i*img.width]);
+            blue = blue&mask;    
+            img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]), blue);
           }
         }
       }
