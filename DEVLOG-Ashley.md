@@ -51,3 +51,6 @@ This document must be updated daily every time you finish a work session.
 - completed coding rgb method to edit least bits for red, green, and blue colors
 - debug rgb method (bit issues) with connor
 - update xor format; must be tested still
+
+### 2025-5-30 - XOR Adjustment
+- white image file included for xor

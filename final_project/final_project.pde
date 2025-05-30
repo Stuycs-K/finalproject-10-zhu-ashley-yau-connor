@@ -40,7 +40,7 @@ void setup() {
   ReadMask();
   println("completing task");  
   if(MODE == XOR){
-    XOR(img);
+    XOR(loadImage("white.png"));
   }
   else if (MODE==0 | MODE == 1| MODE == 2){
     RGB(MODE,img);
@@ -123,9 +123,6 @@ void XOR(PImage img){
       if(ind < img.width & i<img.height){
         if(line.charAt(ind)=='1'){
           img.pixels[ind+i*img.width]=color(red(1), green(1), blue(1));
-        }
-        else{
-          img.pixels[ind+i*img.width]=color(0,0,0);
         }
       }
     }
