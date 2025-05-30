@@ -49,4 +49,5 @@ This document must be updated daily every time you finish a work session.
 
 ### 2025-05-29 - RGB Method
 - completed coding rgb method to edit least bits for red, green, and blue colors
-- debug rgb method (bit issues)
+- debug rgb method (bit issues) with connor
+- update xor format; must be tested still

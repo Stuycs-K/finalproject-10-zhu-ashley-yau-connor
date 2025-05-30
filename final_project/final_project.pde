@@ -24,35 +24,27 @@ ArrayList<String> textmaskarr= new ArrayList<String>();
 void setup() {
   //size(1200, 600);
 
-  //if(args==null){
-  //  println("no arguments provided");
-  //  println("flags: -i INPUTFILENAME -o OUTPUTFILENAME -m MASKFILENAME -p PLANEMODE -n PLANENUMBER (for rgb, alpha, random)");
-  //  return;
-  //}
+  if(args==null){
+    println("no arguments provided");
+    println("flags: -i INPUTFILENAME -o OUTPUTFILENAME -m MASKFILENAME -p PLANEMODE -n PLANENUMBER (for rgb, alpha, random)");
+    return;
+  }
 
-  //if(!parseArgs()){
-  //  println("Parsing argument error;");
-  //  return;
-  //}
-
+  if(!parseArgs()){
+    println("Parsing argument error;");
+    return;
+  }
   println("Attempting to load image.");
   PImage img = loadImage(INPUTFILENAME);
-  println("xoring now");
+  println("reading mask file");
   ReadMask();
-  RGB(MODE,img);
-
-  //println("Attempting to create part array.");
-  //int parts[];
-  //if(MODE==FILE){
-  //  //in file mode, the plaintext is a filename
-  //  parts = fileToArray(PLAINTEXT);
-  //}else{
-  //  parts = messageToArray(PLAINTEXT);
-  //}
-  //println("Attempting to modify image.");
-  //modifyImage(img, parts);
-  //println("Attempting to save image.");
-
+  println("completing task");  
+  if(MODE == XOR){
+    XOR(img);
+  }
+  else if (MODE==0 | MODE == 1| MODE == 2){
+    RGB(MODE,img);
+  }
   img.save(OUTPUTFILENAME);
   println("done and saved");
 
@@ -111,7 +103,7 @@ boolean parseArgs(){
   }
   return true;
 }
-ArrayList<String> ReadMask(){
+void ReadMask(){
   File maskFile = new File(MASKFILENAME);
   try{
   Scanner readMask = new Scanner(maskFile);
@@ -122,7 +114,6 @@ ArrayList<String> ReadMask(){
   }catch(Exception e){
     e.printStackTrace();
   }
-    return textmaskarr;
 }
 void XOR(PImage img){
   String line;
@@ -131,9 +122,10 @@ void XOR(PImage img){
     for(int ind = 0; ind <line.length(); ind ++){
       if(ind < img.width & i<img.height){
         if(line.charAt(ind)=='1'){
-          img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]+16), 
-                                            green(img.pixels[ind+i*img.width]+16), 
-                                            blue(img.pixels[ind+i*img.width]+16));
+          img.pixels[ind+i*img.width]=color(red(1), green(1), blue(1));
+        }
+        else{
+          img.pixels[ind+i*img.width]=color(0,0,0);
         }
       }
     }
@@ -184,77 +176,4 @@ void RGB(int col, PImage img){ // col 0, 1, 2 for R, G, B
       }
     }
   }
-}
-
-void modifyImage(PImage img, int[]messageArray) {
- 
-  if (MODE == 0) {
-
-    for (int i = 0; i < messageArray.length; i++) {
-      int red = (int) red(img.pixels[i]);
-      red &= 252;
-      red += messageArray[i];
-      
-      img.pixels[i] = color(red, green(img.pixels[i]), blue(img.pixels[i])); 
-    }
-    for (int i = messageArray.length; i < messageArray.length + 4; i++) {
-      int red = (int) red(img.pixels[i]);
-      red |= 3;
-      
-      img.pixels[i] = color(red, green(img.pixels[i]), blue(img.pixels[i]));
-    }
-
-  } else if (MODE == 1 || MODE == 2) {
-    print(messageArray.length);
-    int count = 0;
-    for (int i = 0; i < img.pixels.length; i++) {
-      int red = (int) red(img.pixels[i]); // can try to optimize w/ >> 16 & 0xFF
-      int green = (int) green(img.pixels[i]);
-      
-      if (red % 4 == 0 && green % 4 == 0) {
-        if (count < messageArray.length) { 
-          int blue = (int) blue(img.pixels[i]);
-          blue &= 252;
-          blue += messageArray[count];
-        
-          img.pixels[i] = color(red, green, blue); 
-          count++;
-        }
-       else {
-         red |= 1;
-         img.pixels[i] = color(red, green, blue(img.pixels[i]));
-       }
-      }
-    }
-  }
-  img.updatePixels();
-}
-
-int [] messageToArray(String s) {
-  int[] arr = new int[4* s.length()];
-  for (int i = 0; i < s.length(); i++) {
-    int ASCII = (int) s.charAt(i);
-    for (int j = 0; j < 4; j++) {
-      arr[4*(i+1)-j-1] = ASCII & 3;
-      ASCII /= 4;
-    }
-  }
-  return arr;
-}
-
-int []fileToArray(String filename) {
-  byte[] bytes = loadBytes(filename);
-  int[] arr = new int[4 * bytes.length];
-  
-  for (int i = 0; i < bytes.length; i++) {
-    //println((int) bytes[i]);
-    //println("1: " + (int) (bytes[i] & (128+64)));
-    arr[4*i] = (int) (bytes[i] & (128+64)) / 64;
-    arr[4*i+1] = (int) (bytes[i] & (32+16)) / 16;
-    arr[4*i+2] = (int) (bytes[i] & (8+4)) / 4;
-    arr[4*i+3] = (int) (bytes[i] & (2+1));
-    //println(arr[4*i]+" "+arr[4*i+1]+" "+arr[4*i+2]+" "+arr[4*i+3]);
-  }
-  //print(Arrays.toString(arr));
-  return arr;
 }
