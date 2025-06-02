@@ -10,10 +10,9 @@ final static int ALP = 3;
 final static int XOR = 4;
 final static int GRA = 5;
 final static int FUL = 6;
-final static int RAN = 7;
 
 int PLANENO = 0;
-int MODE = RED;
+int MODE = XOR;
 
 String MASKFILENAME = "messageMask.txt";
 String INPUTFILENAME="cat.png";
@@ -40,7 +39,8 @@ void setup() {
   ReadMask();
   println("completing task");  
   if(MODE == XOR){
-    XOR(loadImage("white.png"));
+    img = loadImage("black.jpg");
+    XOR(img);
   }
   else if (MODE==0 | MODE == 1| MODE == 2){
     RGB(MODE,img);
@@ -122,7 +122,10 @@ void XOR(PImage img){
     for(int ind = 0; ind <line.length(); ind ++){
       if(ind < img.width & i<img.height){
         if(line.charAt(ind)=='1'){
-          img.pixels[ind+i*img.width]=color(red(1), green(1), blue(1));
+          int red = (int) red(img.pixels[ind+i*img.width]);
+          int blue = (int) blue(img.pixels[ind+i*img.width]);
+          int green = (int) green(img.pixels[ind+i*img.width]);
+          img.pixels[ind+i*img.width]=color( 5, 5, 5);
         }
       }
     }
