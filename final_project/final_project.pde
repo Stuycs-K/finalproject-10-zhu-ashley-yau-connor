@@ -21,7 +21,6 @@ ArrayList<String> textmaskarr= new ArrayList<String>();
 
 
 void setup() {
-  //size(1200, 600);
 
   if(args==null){
     println("no arguments provided");
