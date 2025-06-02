@@ -1,5 +1,5 @@
- String INPUTFILENAME="cat.png";
-String OUTPUTFILENAME="output.png";
+String INPUTFILENAME="cat.png";
+String OUTPUTFILENAME="messaegMask.txt";
 int threshold = 128;
 PImage img;
 PImage base;
@@ -8,7 +8,18 @@ int increment = 1;
 
 void setup() {
   size(1200, 600);
+  
+  if(args==null){
+    println("no arguments provided");
+    println("flags: -i INPUTFILENAME -o OUTPUTFILENAME");
+    return;
+  }
 
+  if(!parseArgs()){
+    println("Parsing argument error;");
+    return;
+  }
+  
   println("Attempting to load image.");
   img = loadImage(INPUTFILENAME);
   base = loadImage(INPUTFILENAME);
@@ -19,13 +30,37 @@ void setup() {
   
 }
 
+boolean parseArgs() {
+  if (args != null) {
+    for (int i = 0; i < args.length; i++){
+      if(args[i].equals("-i")){
+        try{
+          INPUTFILENAME=args[i+1];
+        }catch(Exception e){
+          println("-i requires filename as next argument");
+          return false;
+          
+        }
+      }
+      if(args[i].equals("-m")){
+        if(args[i+1]!=null){
+          OUTPUTFILENAME=args[i+1];
+        }else{
+          println("-m requires filename as next argument");
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+}
 void save() {
     
   //save the modified image to disk.
   println("Attempting to save image.");
   img.save(OUTPUTFILENAME);
   
-  PrintWriter writer = createWriter("messageMask.txt");
+  PrintWriter writer = createWriter(OUTPUTFILENAME);
   for (int i = 0; i < img.height; i++) {
     for (int j = 0; j < img.width; j++) {
       int px = j + i * img.width;
