@@ -30,3 +30,6 @@ Finished image work functionality. Black and white images can be adjusted for br
 
 ## 2025-05-29
 Taught Ashley how to code. Fixed a bug that was easily spot-able with proper programming etiquette. Unfortunately, she does not practice propr programming etiquette.
+
+## 2025-06-02
+Added input for the image work and font work files.
