@@ -1,5 +1,7 @@
 PGraphics pg;
 PFont font;
+String INPUTFILENAME="message.png";
+String OUTPUTFILENAME="messageMask.txt";
 String message = "SECRET";
 int maskSize = 1;
 
@@ -27,7 +29,7 @@ void setup() {
 
   pg.loadPixels();
 
-  PrintWriter writer = createWriter("messageMask.txt");
+  PrintWriter writer = createWriter(OUTPUTFILENAME);
   
   for (int y = 2 * paddingY; y < paddingY + th; y+= maskSize) {
     for (int x = paddingX; x < paddingX + tw; x+= maskSize) {
@@ -44,4 +46,29 @@ void setup() {
   writer.close();
 
   image(pg, 0, 0);
+}
+
+boolean parseArgs() {
+  if (args != null) {
+    for (int i = 0; i < args.length; i++){
+      if(args[i].equals("-a")){
+        try{
+          INPUTFILENAME=args[i+1];
+        }catch(Exception e){
+          println("-a requires filename as next argument");
+          return false;
+          
+        }
+      }
+      if(args[i].equals("-m")){
+        if(args[i+1]!=null){
+          OUTPUTFILENAME=args[i+1];
+        }else{
+          println("-m requires filename as next argument");
+          return false;
+        }
+      }
+    }
+  }
+  return true;
 }

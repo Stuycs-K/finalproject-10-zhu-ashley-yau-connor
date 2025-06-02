@@ -33,11 +33,11 @@ void setup() {
 boolean parseArgs() {
   if (args != null) {
     for (int i = 0; i < args.length; i++){
-      if(args[i].equals("-i")){
+      if(args[i].equals("-a")){
         try{
           INPUTFILENAME=args[i+1];
         }catch(Exception e){
-          println("-i requires filename as next argument");
+          println("-a requires filename as next argument");
           return false;
           
         }
