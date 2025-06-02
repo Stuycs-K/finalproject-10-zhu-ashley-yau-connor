@@ -54,3 +54,7 @@ This document must be updated daily every time you finish a work session.
 
 ### 2025-5-30 - XOR Adjustment
 - white image file included for xor
+
+### 2025-6-2 - Makefile and XOR Adjustment
+- changed white image file to black image file
+- made makefile and adjustments for args
