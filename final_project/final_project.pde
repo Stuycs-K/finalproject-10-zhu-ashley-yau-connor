@@ -10,6 +10,7 @@ final static int ALP = 3;
 final static int XOR = 4;
 final static int GRA = 5;
 final static int FUL = 6;
+final static int RAND = 7;
 
 int PLANENO = 0;
 int MODE = XOR;
@@ -36,17 +37,29 @@ void setup() {
   PImage img = loadImage(INPUTFILENAME);
   println("reading mask file");
   ReadMask();
-  println("completing task");  
+  println("completing task on MODE: " + MODE);  
   if(MODE == XOR){
+    println("performing XOR steghide");
     img = loadImage("black.jpg");
     XOR(img);
   }
-  else if (MODE==0 | MODE == 1| MODE == 2){
+  else if (MODE==RED | MODE == GRE| MODE == BLU){
+    println("performing RGB steghide");
     RGB(MODE,img);
   }
+  
+  else if (MODE==RAND) {
+    println("performing random steghide");
+    RAND(img);
+  }
+  
+  else if (MODE==GRA) {
+    println("performing grey steghide");
+    GRA(img);
+  }
   img.save(OUTPUTFILENAME);
-  println("done and saved");
-
+  println("done and saved to " + OUTPUTFILENAME);
+  exit();
 }
 
 boolean parseArgs(){
@@ -114,6 +127,66 @@ void ReadMask(){
     e.printStackTrace();
   }
 }
+
+void RAND(PImage img) {
+  String line;
+  int count = 0;
+  float avgR = 0;
+  float avgB = 0;
+  float avgG = 0;
+  for(int i = 0; i<textmaskarr.size(); i++){
+    line = textmaskarr.get(i);
+    for(int ind = 0; ind <line.length(); ind ++){
+      if(ind < img.width & i<img.height){
+        if(line.charAt(ind)=='1'){
+          float red = red(img.pixels[ind+i*img.width]);
+          float blue = blue(img.pixels[ind+i*img.width]);
+          float green = green(img.pixels[ind+i*img.width]);
+          
+          count++;
+          avgR *= (count - 1.0)/count;
+          avgB *= (count - 1.0)/count;
+          avgG *= (count - 1.0)/count;
+          avgR += red/count;
+          avgG += green/count;
+          avgB += blue/count;
+          
+        }
+      }
+    }
+  }
+  
+  for(int i = 0; i<textmaskarr.size(); i++){
+    line = textmaskarr.get(i);
+    for(int ind = 0; ind <line.length(); ind ++){
+      if(ind < img.width & i<img.height){
+        if(line.charAt(ind)=='1'){
+          img.pixels[ind+i*img.width] = color(avgR,avgG,avgB);
+        }
+      }
+    }
+  }
+}
+
+void GRA(PImage img) {
+  String line;
+  
+  for(int i = 0; i<textmaskarr.size(); i++){
+    line = textmaskarr.get(i);
+    for(int ind = 0; ind <line.length(); ind ++){
+      if(ind < img.width & i<img.height){
+        if(line.charAt(ind)=='1'){
+          float red = (float) red(img.pixels[ind+i*img.width]);
+          float blue = (float) blue(img.pixels[ind+i*img.width]);
+          float green = (float) green(img.pixels[ind+i*img.width]);
+          float grey = (2 * red + 2 * blue + green) / 5.0;
+          img.pixels[ind+i*img.width] = color(grey);
+        }
+      }
+    }
+  }
+
+}
 void XOR(PImage img){
   String line;
   for(int i = 0; i<textmaskarr.size(); i++){
@@ -121,10 +194,10 @@ void XOR(PImage img){
     for(int ind = 0; ind <line.length(); ind ++){
       if(ind < img.width & i<img.height){
         if(line.charAt(ind)=='1'){
-          int red = (int) red(img.pixels[ind+i*img.width]);
-          int blue = (int) blue(img.pixels[ind+i*img.width]);
-          int green = (int) green(img.pixels[ind+i*img.width]);
-          img.pixels[ind+i*img.width]=color( 5, 5, 5);
+          //int red = (int) red(img.pixels[ind+i*img.width]);
+          //int blue = (int) blue(img.pixels[ind+i*img.width]);
+          //int green = (int) green(img.pixels[ind+i*img.width]);
+          img.pixels[ind+i*img.width]=color(10, 10, 10);
         }
       }
     }
