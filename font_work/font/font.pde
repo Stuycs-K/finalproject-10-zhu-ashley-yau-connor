@@ -60,11 +60,11 @@ boolean parseArgs() {
           
         }
       }
-      if(args[i].equals("-m")){
+      if(args[i].equals("-t")){
         if(args[i+1]!=null){
           OUTPUTFILENAME=args[i+1];
         }else{
-          println("-m requires filename as next argument");
+          println("-t requires filename as next argument");
           return false;
         }
       }
