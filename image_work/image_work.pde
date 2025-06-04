@@ -73,6 +73,8 @@ void save() {
   
   writer.flush();
   writer.close();
+  
+  println("Saved.");
 }
 void blackWhiteImage(PImage img) {
   for (int i = 0 ; i < img.pixels.length ; i++) {

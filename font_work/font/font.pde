@@ -4,19 +4,33 @@ String INPUTFILENAME="message.png";
 String OUTPUTFILENAME="messageMask.txt";
 String message = "SECRET";
 int maskSize = 1;
+boolean readyToExit = false;
 
 void setup() {
-  size(300, 100); 
+  size(960, 540); 
   font = createFont("Qaroxe-zrllw.otf", 48);
+  parseArgs();
+  String[] lines = loadStrings(INPUTFILENAME);
   
   int paddingX = 10;
   int paddingY = 10;
 
   textFont(font);
   textSize(48);
-  
-  float tw = textWidth(message);
-  float th = textAscent() + textDescent();
+  float tw = 0;
+  message = "";
+  for (int i = 0; i < lines.length; i++) {
+    String line = lines[i];
+    message += line;
+    if (i != lines.length-1){
+      message += "\n";
+    }
+    
+    if (textWidth(line) > tw) {
+      tw = textWidth(line);
+    }
+  }
+  float th = (textAscent() + textDescent()) * (lines.length + 1);
 
   pg = createGraphics(width, height);
   pg.beginDraw();
@@ -46,6 +60,21 @@ void setup() {
   writer.close();
 
   image(pg, 0, 0);
+  
+  readyToExit=true;
+}
+
+void draw() {
+  if (readyToExit) {
+    image(pg, 0, 0);
+    fill(255, 0, 0);
+    textSize(20);
+    text("Press any key to exit.", 20, height - 20);
+  }
+}
+
+void keyPressed() {
+  exit();
 }
 
 boolean parseArgs() {

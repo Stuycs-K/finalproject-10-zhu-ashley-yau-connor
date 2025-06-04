@@ -40,7 +40,6 @@ void setup() {
   println("completing task on MODE: " + MODE);  
   if(MODE == XOR){
     println("performing XOR steghide");
-    img = loadImage("black.jpg");
     XOR(img);
   }
   else if (MODE==RED | MODE == GRE| MODE == BLU){
@@ -174,7 +173,7 @@ void GRA(PImage img) {
   for(int i = 0; i<textmaskarr.size(); i++){
     line = textmaskarr.get(i);
     for(int ind = 0; ind <line.length(); ind ++){
-      if(ind < img.width & i<img.height){
+      if(ind < img.width && i<img.height){
         if(line.charAt(ind)=='1'){
           float red = (float) red(img.pixels[ind+i*img.width]);
           float blue = (float) blue(img.pixels[ind+i*img.width]);
@@ -192,12 +191,12 @@ void XOR(PImage img){
   for(int i = 0; i<textmaskarr.size(); i++){
     line = textmaskarr.get(i);
     for(int ind = 0; ind <line.length(); ind ++){
-      if(ind < img.width & i<img.height){
+      if(ind < img.width && i<img.height){
         if(line.charAt(ind)=='1'){
           //int red = (int) red(img.pixels[ind+i*img.width]);
           //int blue = (int) blue(img.pixels[ind+i*img.width]);
           //int green = (int) green(img.pixels[ind+i*img.width]);
-          img.pixels[ind+i*img.width]=color(10, 10, 10);
+          img.pixels[ind+i*img.width]=color(8, 8, 8);
         }
       }
     }
@@ -206,25 +205,32 @@ void XOR(PImage img){
 
 void RGB(int col, PImage img){ // col 0, 1, 2 for R, G, B
   String line;
-  int mask = 256 - (int) pow(2, PLANENO);
+  int mask = 255 - (int) pow(2, PLANENO);
+  print(mask);
+  int count = 0;
+  img.loadPixels();
+
+
   for(int i = 0; i<textmaskarr.size(); i++){
     line = textmaskarr.get(i);
     for(int ind = 0; ind <line.length(); ind ++){
-      if(ind < img.width & i<img.height){
+      if(ind < img.width && i<img.height){
+        //println(count);
         if(line.charAt(ind)=='1'){ // make last 0
           if(col == 0){
             int red = (int) red(img.pixels[ind+i*img.width]);
-            red = red&mask+1;
+            red = red&mask;
+            red += (int) pow(2, PLANENO);
             img.pixels[ind+i*img.width]=color(red, green(img.pixels[ind+i*img.width]), blue(img.pixels[ind+i*img.width]));
           }  
           else if (col == 1){
             int green = (int) green(img.pixels[ind+i*img.width]);
-            green = green&mask+1;          
+            green = green&mask+ (int) pow(2, PLANENO);          
             img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green, blue(img.pixels[ind+i*img.width]));
           }
           else if (col == 2){
             int blue = (int) blue(img.pixels[ind+i*img.width]);
-            blue = blue&mask+1;    
+            blue = blue&mask+ (int) pow(2, PLANENO);    
             img.pixels[ind+i*img.width]=color(red(img.pixels[ind+i*img.width]), green(img.pixels[ind+i*img.width]), blue);
           }
         }
@@ -246,6 +252,9 @@ void RGB(int col, PImage img){ // col 0, 1, 2 for R, G, B
           }
         }
       }
+      count++;
     }
   }
+  img.updatePixels();
+
 }
