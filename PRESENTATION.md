@@ -8,7 +8,9 @@ There are three main steps that should occur when running our program, with the 
 
 ## Running Our Project
 There are three commands the user may run in our program: 
-- `make ImageMask`
+- `make imageMask`: create mask text file from an image
+- `make messageMask`: create mask text file from a text file
+- `make encode`: encrypt message into image from mask text file
 
 ### Flags for Creating Mask File 
 If we would like to create a mask text file from a message or image, we will use the following flags: 
@@ -17,7 +19,7 @@ If we would like to create a mask text file from a message or image, we will use
 | -i | input image or message text file |
 | -o | output image | 
 
-### Flags for ImageMask
+### Flags for Encryption
 | Flag | Description |
 | ----- | --------------- |
 | -i | input image |
@@ -25,3 +27,10 @@ If we would like to create a mask text file from a message or image, we will use
 | -t | message mask text file |
 | -m | plane mode |
 | -p | plane mode number |
+
+## Different Planes
+We implemented encryption in different types of images so that the images may clearly be visible in different stegsolve planes. These planes are: 
+- red, green, blue planes
+- xor plane
+- random plane
+- gray plane
