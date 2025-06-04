@@ -4,15 +4,22 @@
 ### Cashley Cha-Ching
 
 Ashley Zhu and Connor Yau
-       
+
 ### Project Description:
 
-Our program encrypts a message into an image file that may then be decrypted when viewed through a plane in Stegsolve. We aim to implement encryption across all 37 different planes.
+Our program encrypts a message into an image file through different techniques that may then be decrypted when viewed through varying planes in Stegsolve. We implemented encryption across the random, red, green, blue, xor, and gray planes.
 
 ### Instructions:
-
-The user should run the make run command and the user will be prompted with three questions/commands. The first input the user should give is the message they would like to encode. The second input they should give is the image file they would like to encode information to. Lastly, the third input is the plane the message is being encrypted for in Stegsolve. There are 37 possible planes: xor, alpha plane (numbered 0 through 7), red plane (numbered 0 through 7), green plane (numbered 0 through 7), blue plane (numbered 0 through 7), full alpha, full red, full green, full blue, random colour map (numbered 0 through 7), and gray bits.
+The user should run make run with arguments with the following flags:  
+[-] -i flag for input user image
+[-] -t flag for output message mask text file
+[-] -o flag for output image file name
+[-] -m flag for mode (red, green, blue, xor, gray, random)
+[-] -p flag for bit edited for relevant planes (red, green, blue, alpha)
+[-] -a flag for text file containing message
+The default input and output image file names are cat.png and output.png. The default mask text file name is messageMask.txt.
 
 ### Resources/ References:
-
-list here(CHANGE THIS!!!!!)
+[-] https://www.mdpi.com/2076-3417/12/19/10096
+[-] https://www.researchgate.net/publication/271863505_A_Survey_of_Image_Steganography_Techniques
+[-] https://www.dafont.com/daydream-3.charmap?back=bitmap
