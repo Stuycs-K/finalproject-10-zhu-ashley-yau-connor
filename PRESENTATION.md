@@ -29,7 +29,7 @@ If we would like to create a mask text file from a message or image, we will use
 | -p | plane mode number |
 
 ### Flags for Encryption
-| Modes | Red | Green | Blue | xor | gray | random |
+| Modes | Red | Green | Blue | Xor | Gray | Random |
 | -- | -- | -- | -- | -- | -- | -- |
 | Mode Number | 0 | 1 | 2 | 4 | 5 | 7 |
 
