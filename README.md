@@ -10,14 +10,16 @@ Ashley Zhu and Connor Yau
 Our program encrypts a message into an image file through different techniques that may then be decrypted when viewed through varying planes in Stegsolve. We implemented encryption across the random, red, green, blue, xor, and gray planes.
 
 ### Instructions:
-The user should run make run with arguments with the following flags:  
+The user should begin by running `make imageMask` or `make messageMask` to create a message mask text file with a -i flag for the input image/text file name and the -o flag for the output mask text file name. 
+
+After, the user should run `make run` with arguments with the following flags:  
 - -i flag for input user image
-- -t flag for output message mask text file
 - -o flag for output image file name
+- -t flag for output message mask text file
 - -m flag for mode (red, green, blue, xor, gray, random)
 - -p flag for bit edited for relevant planes (red, green, blue, alpha)
-- -a flag for text file containing message
-The default input and output image file names are cat.png and output.png. The default mask text file name is messageMask.txt.
+
+Finally, the user should view the output image under the specified stegsolve plane to see the message. 
 
 ### Resources/ References:
 - https://www.mdpi.com/2076-3417/12/19/10096
