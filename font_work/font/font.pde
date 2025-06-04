@@ -51,20 +51,20 @@ void setup() {
 boolean parseArgs() {
   if (args != null) {
     for (int i = 0; i < args.length; i++){
-      if(args[i].equals("-a")){
+      if(args[i].equals("-i")){
         try{
           INPUTFILENAME=args[i+1];
         }catch(Exception e){
-          println("-a requires filename as next argument");
+          println("-i requires filename as next argument");
           return false;
           
         }
       }
-      if(args[i].equals("-t")){
+      if(args[i].equals("-o")){
         if(args[i+1]!=null){
           OUTPUTFILENAME=args[i+1];
         }else{
-          println("-t requires filename as next argument");
+          println("-o requires filename as next argument");
           return false;
         }
       }
