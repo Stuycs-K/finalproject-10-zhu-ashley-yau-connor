@@ -20,6 +20,7 @@ If we would like to create a mask text file from a message or image, we will use
 | -o | output image | 
 
 ### Flags for Encryption
+In order to encode our message in our mask text file into an image, we will use the following flags: 
 | Flag | Description |
 | ----- | --------------- |
 | -i | input image |
