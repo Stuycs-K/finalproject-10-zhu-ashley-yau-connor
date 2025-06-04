@@ -193,10 +193,10 @@ void XOR(PImage img){
     for(int ind = 0; ind <line.length(); ind ++){
       if(ind < img.width && i<img.height){
         if(line.charAt(ind)=='1'){
-          //int red = (int) red(img.pixels[ind+i*img.width]);
-          //int blue = (int) blue(img.pixels[ind+i*img.width]);
-          //int green = (int) green(img.pixels[ind+i*img.width]);
-          img.pixels[ind+i*img.width]=color(8, 8, 8);
+          int red = (int) red(img.pixels[ind+i*img.width]);
+          int blue = (int) blue(img.pixels[ind+i*img.width]);
+          int green = (int) green(img.pixels[ind+i*img.width]);
+          img.pixels[ind+i*img.width]=color(red+8, green+8, blue+8);
         }
       }
     }

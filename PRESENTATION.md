@@ -35,7 +35,7 @@ If we would like to create a mask text file from a message or image, we will use
 
 ## Different Planes
 We implemented encryption in different types of images so that the images may clearly be visible in different stegsolve planes. These planes are: 
-- red, green, blue planes
-- xor plane
-- random plane
-- gray plane
+- red, green, blue planes (makes bit 0 or 1 depending on if message pixel)
+- xor plane (lightens message pixel colors)
+- random plane (averages message pixel colors)
+- gray plane (grays message pixel colors)
