@@ -40,7 +40,6 @@ This document must be updated daily every time you finish a work session.
 - managed missing messageMask.txt file
 - debugged xor method so editing multiple rows
 - edited mean of editing pixels so message less visible without xor
-- research: file:///C:/Users/ashle/Downloads/JISEM_20_Poreddy+Lakshmi+vardhan_2_1424.pdf
 
 ### 2025-05-28 - XOR Research, Adjust for rgb methods
 - edited xor method to make read message mask text file
@@ -59,6 +58,8 @@ This document must be updated daily every time you finish a work session.
 - changed white image file to black image file
 - made makefile and adjustments for args
 
-### 2025-6-3 - Makefile edits and readme
+### 2025-6-3 - Makefile, readme, presentation.md
 - adjusted read me file for current project instructions and flags
 - fixed typo in makefile 
+- fixed formatting errors in readme
+- made presentation.md file

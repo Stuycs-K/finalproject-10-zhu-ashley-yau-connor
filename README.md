@@ -11,15 +11,15 @@ Our program encrypts a message into an image file through different techniques t
 
 ### Instructions:
 The user should run make run with arguments with the following flags:  
-[-] -i flag for input user image
-[-] -t flag for output message mask text file
-[-] -o flag for output image file name
-[-] -m flag for mode (red, green, blue, xor, gray, random)
-[-] -p flag for bit edited for relevant planes (red, green, blue, alpha)
-[-] -a flag for text file containing message
+- -i flag for input user image
+- -t flag for output message mask text file
+- -o flag for output image file name
+- -m flag for mode (red, green, blue, xor, gray, random)
+- -p flag for bit edited for relevant planes (red, green, blue, alpha)
+- -a flag for text file containing message
 The default input and output image file names are cat.png and output.png. The default mask text file name is messageMask.txt.
 
 ### Resources/ References:
-[-] https://www.mdpi.com/2076-3417/12/19/10096
-[-] https://www.researchgate.net/publication/271863505_A_Survey_of_Image_Steganography_Techniques
-[-] https://www.dafont.com/daydream-3.charmap?back=bitmap
+- https://www.mdpi.com/2076-3417/12/19/10096
+- https://www.researchgate.net/publication/271863505_A_Survey_of_Image_Steganography_Techniques
+- https://www.dafont.com/daydream-3.charmap?back=bitmap
