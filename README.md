@@ -12,7 +12,7 @@ Our program encrypts a message into an image file through different techniques t
 ### Instructions:
 The user should begin by running `make imageMask` or `make messageMask` to create a message mask text file with a -i flag for the input image/text file name and the -o flag for the output mask text file name. 
 
-After, the user should run `make run` with arguments with the following flags:  
+After, the user should run `make encode` with arguments with the following flags:  
 - -i flag for input user image
 - -o flag for output image file name
 - -t flag for output message mask text file

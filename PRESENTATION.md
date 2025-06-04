@@ -28,6 +28,10 @@ If we would like to create a mask text file from a message or image, we will use
 | -m | plane mode |
 | -p | plane mode number |
 
+### Flags for Encryption
+| Modes | Red | Green | Blue | xor | gray | random |
+| Mode Number | 0 | 1 | 2 | 4 | 5 | 7 |
+
 ## Different Planes
 We implemented encryption in different types of images so that the images may clearly be visible in different stegsolve planes. These planes are: 
 - red, green, blue planes

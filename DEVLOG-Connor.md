@@ -33,3 +33,6 @@ Taught Ashley how to code. Fixed a bug that was easily spot-able with proper pro
 
 ## 2025-06-02
 Added input for the image work and font work files.
+
+## 2025-06-03
+Debugged final_project.pde issues regarding the rgb method. Made test cases for video. 
