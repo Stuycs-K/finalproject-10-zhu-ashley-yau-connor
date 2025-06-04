@@ -17,7 +17,7 @@ After, the user should run `make encode` with arguments with the following flags
 - -o flag for output image file name
 - -t flag for output message mask text file
 - -m flag for mode (red, green, blue, xor, gray, random)
-- -p flag for bit edited for relevant planes (red, green, blue, alpha)
+- -p flag for bit edited for relevant planes (red, green, blue)
 
 Finally, the user should view the output image under the specified stegsolve plane to see the message. 
 
