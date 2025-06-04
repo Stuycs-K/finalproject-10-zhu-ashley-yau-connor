@@ -25,9 +25,9 @@ In order to encode our message in our mask text file into an image, we will use 
 | ----- | --------------- |
 | -i | input image |
 | -o | output image |
-| -t | message mask text file |
-| -m | plane mode |
-| -p | plane mode number |
+| -m | message mask text file |
+| -p | plane mode |
+| -n | plane mode number |
 
 ### Flags for Encryption
 | Modes | Red | Green | Blue | Xor | Gray | Random |
