@@ -21,6 +21,9 @@ After, the user should run `make encode` with arguments with the following flags
 
 Finally, the user should view the output image under the specified stegsolve plane to see the message. 
 
+## Project Video
+https://drive.google.com/file/d/1sWpxIFiCJgsP9Hztx3JUljcvKWseC4Fq/view?usp=sharing
+
 ### Resources/ References:
 - https://www.mdpi.com/2076-3417/12/19/10096
 - https://www.researchgate.net/publication/271863505_A_Survey_of_Image_Steganography_Techniques
